@@ -1,8 +1,11 @@
 :root {
-    --primary-color: #6d9eeb;
-    --secondary-color: #EBBA6D;
+    --primary-color: #349C8D;
+    --secondary-color: #B12222;
     --dark-color: #424242;
     --white-color: #BDBDBD;
+}
+.logoFont {
+    font-family: 'Source Code Pro', monospace;
 }
 
 body {
