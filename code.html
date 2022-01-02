@@ -57,22 +57,76 @@
     <!-- === Main Section === -->
     <main class="flex-shrink-0">
         <div class="container py-5 px-5 mt-5">
-<h2 class="border-1 border-bottom border-dark">The Code for APP NAME.</h2>            
+<h2 class="border-1 border-bottom border-dark">The Code for RACE CAR</h2>            
             <div class="row row-cols-1 row-cols-md-2">
                 <div class="col-lg-8">
                     <pre class="line-numbers">
                         <code class="language-javascript">
-                            //Call Hello World
-                            function helloWorld(){
-                                alert("Hey World!");
-                            }
+                            // Get string from the page
+// Controller Function
+function getValue() {
+    document.getElementById("alert").classList.add("invisible");
+    // Get user string
+    let userString = document.getElementById("userString").value;
+    // Check palindrome
+    let returnObj = checkPalindrome(userString)
+    // Display result on page
+    displayString(returnObj);
+}
+
+// Reverse string and perform palindrome check
+// Logic Function
+function checkPalindrome(userString) {
+
+    // Set input string to lower case and cleanup input string of any whitespace, special characters, and numbers.
+    let cleanedString = userString.toLowerCase();
+    let regex = /([^a-z0-9])/gi;
+    cleanedString = cleanedString.replace(regex, "")
+
+    let revString = [];
+    let returnObj = {};
+
+    // Reverse cleanedString string via for loop
+    for (let index = cleanedString.length - 1; index >= 0; index--) {
+        revString += cleanedString[index];
+    }
+
+    // Set object property based on palindrome status
+    if (revString == cleanedString) {
+        returnObj.msg = "Congratulations! You entered a palindrome."
+    } else {
+        returnObj.msg = "Sorry. Your input isn't a palindrome."
+
+    }
+
+    returnObj.reversed = revString;
+
+    return returnObj;
+}
+
+// Display reversed string to user
+// View Function
+function displayString(returnObj) {
+
+    // Write message to heading
+    document.getElementById("heading").innerHTML = returnObj.msg;
+    // Write message to page
+    document.getElementById("msg").innerHTML = `Your word/phrase reversed is: ${returnObj.reversed}`;
+    // Show alert box
+    document.getElementById("alert").classList.remove("invisible");
+}
                         </code>
                     </pre>
                 </div>
                 <div class="col-lg-4">
-                    <p>The Code is structured in one function.</p>
-                    <h5>Hello World</h5>
-                    <p>Hello World is a function that displays an alert with a message of "Hey World!"</p>
+                    <p>The dipslayed code shows the JavaScript used for this project. The main functions are outlined below.</p>
+                    <h5>getValue</h5>
+                    <p><strong>getValue</strong> runs when the <strong>Check Palindrome</strong> button is clicked on the app. It grabs the user string value and passes it into <strong>checkPalindrome</strong>.</p>
+                    <h5>checkPalindrome</h5>
+                    <p><strong>checkPalindrome</strong> first takes our string and strips it of junk characters & spaces. We have 2 new variables <strong>revString</strong> and <strong>returnObj</strong> to store our results.</p> <p>Now with the string cleaned, we can iterate through each character starting from the last and going backwards. Each iteration pushes the current character to a new array, <strong>revString</strong>.</p>
+                    <p>Next, we compare the reversed string with the original(cleaned) input string. We use an if/else conditional to save the appropiate message to the <strong>msg</strong> property of <strong>returnObj</strong> we made earlier. We also save the reversed string to the object and return <strong>returnObj</strong></p>
+                    <h5>displayString</h5>
+                    <p>Here we take our <strong>returnObj</strong> properties to write the message to the page. We also need to remove the "invisible" class from our alert element so our results can display!</p>
                 </div>
             </div>
         </div>
